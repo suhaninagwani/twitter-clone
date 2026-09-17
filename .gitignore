@@ -52,3 +52,6 @@ linux/build/
 /ios/build/
 .dart_tool/
 .packages
+work/DevOps-Linux/
+
+lib.zip
