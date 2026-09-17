@@ -16,6 +16,8 @@ This class handles all data from the firebase.
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:twitter_clone/models/user.dart';
+import 'dart:developer' as developer;
+
 
 class DatabaseService {
   //get instance of firestore db & auth
@@ -65,7 +67,8 @@ class DatabaseService {
     
     }
     catch(e){
-      print(e);
+      //print(e);
+      developer.log('your message here');
       return null;
     }
   }
