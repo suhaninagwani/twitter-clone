@@ -4,6 +4,7 @@ import 'package:twitter_clone/components/my_textfield.dart';
 //import 'package:twitter_clone/pages/home_page.dart';
 import 'package:twitter_clone/services/auth/auth_service.dart';
 import 'package:twitter_clone/components/my_loading_circle.dart';
+import 'package:twitter_clone/services/database/database_service.dart';
 /* Registration page 
 -email
 -confirm password
@@ -26,6 +27,7 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   //access auth service
   final _auth = AuthService();
+  final _db = DatabaseService();
 
 //text controllers
   final TextEditingController nameController= TextEditingController();
@@ -51,6 +53,14 @@ void registerMethod() async{
 
         //registration finished
         if (mounted) hideLoadingCircle(context);
+
+        // once registered, create and save user profile in the database
+        await _db.saveUserInfoInFirebase(
+          name: nameController.text, 
+          email: emailController.text
+          );
+        //dev notes:btw everytime you add a new package , its a good idea to kill the app and restart
+
     }
 
     //catch errors
